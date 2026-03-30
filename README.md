@@ -41,20 +41,20 @@ cuetoflac [options] FILE.CUE
 ### Examples
 
 ```bash
-# Basic usage — FLAC and CUE in the same folder
+# Basic usage - FLAC and CUE in the same folder
 cuetoflac album.cue
 
 # Custom output directory
 cuetoflac album.cue -o ~/Music/Album
 
-# CUE has garbled Cyrillic (old Windows cp1251 encoding)
+# CUE has garbled encoding (old Windows cp1251 encoding)
 cuetoflac album.cue --encoding cp1251
 
 # FLAC filename in CUE sheet is wrong or encoded differently
-cuetoflac album.cue --flac yanka.flac
+cuetoflac album.cue --flac album.flac
 
 # Both issues at once
-cuetoflac yanka.cue -o ./Album --flac yanka.flac --encoding cp1251
+cuetoflac album.cue -o ./Album --flac album.flac --encoding cp1251
 
 # Custom track naming
 cuetoflac album.cue --naming "{n:02d} - {title}"
@@ -70,9 +70,9 @@ cuetoflac album.cue --dry-run -v
 # Build
 docker build -t cuetoflac .
 
-# Run — mount the folder containing your .cue and .flac as /data
+# Run - mount the folder containing your .cue and .flac as /data
 docker run --rm -v "$(pwd)":/data cuetoflac album.cue
-docker run --rm -v "$(pwd)":/data cuetoflac yanka.cue --flac yanka.flac --encoding cp1251 -o /data/Album
+docker run --rm -v "$(pwd)":/data cuetoflac album.cue --flac album.flac --encoding cp1251 -o /data/Album
 ```
 
 ## Notes
